@@ -145,7 +145,7 @@ def main():
     app.add_handler(CallbackQueryHandler(button_callback))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, keyword_reply))
     app.add_handler(MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, welcome_new_member))
-    app.add_handler(MessageHandler(filters.PHOTO | filters.VIDEO, handle_media_post))
+    app.add_handler(MessageHandler(filters.PHOTO | filters.VIDEO | filters.ANIMATION | filters.Document.VIDEO,handle_media_post))
 
     # job queue (IMPORTANT FIX)
     app.job_queue.run_daily(
