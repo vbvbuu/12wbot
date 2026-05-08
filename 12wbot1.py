@@ -40,9 +40,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("Selamat datang 12WIN💋🔥")
 
     keyboard = [
-        [InlineKeyboardButton("📝 Register", url="https://www.12win.online/refer/tlgbot")],
-        [InlineKeyboardButton("🎮 Play Now", url="https://www.12win.online")],
-        [InlineKeyboardButton("🚀 Channel", url="https://t.me/onetwowiin")],
+        [InlineKeyboardButton("📩 Register", url="https://www.12win.online/refer/tlgbot")],
+        [InlineKeyboardButton("🕹️ Play Now", url="https://www.12win.online")],
+        [InlineKeyboardButton("🛎️ Channel", url="https://t.me/onetwowiin")],
         [InlineKeyboardButton("📲 Contact us", callback_data="contact_us")]
     ]
 
@@ -67,13 +67,13 @@ async def keyword_reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if "hi boss" in text or "daftar" in text:
         await update.message.reply_text(
-            "👇 Register link:\nhttps://www.12win.online/refer/tlgbot\n"
-            "💬 CS: https://direct.lc.chat/19594218/"
+            "💎 Register link:\nhttps://www.12win.online/refer/tlgbot\n"
+            "📩 CS: https://direct.lc.chat/19594218/"
         )
     elif "livechat" in text:
-        await update.message.reply_text("💬 CS: https://direct.lc.chat/19594218/")
+        await update.message.reply_text("📩 CS: https://direct.lc.chat/19594218/")
     else:
-        await update.message.reply_text("👇 https://www.12win.online")
+        await update.message.reply_text("💎 https://www.12win.online")
 
 
 async def welcome_new_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -92,7 +92,7 @@ async def scheduled_message(context: ContextTypes.DEFAULT_TYPE):
             try:
                 await context.bot.send_message(
                     chat_id=int(user_id),
-                    text="📢 Daily Bonus Alert: Topup now & WIN BIG!"
+                    text="🎰 Amaran Bonus Harian: Topup sekarang & MENANG BESAR!"
                 )
             except Exception as e:
                 logging.warning(f"Failed {user_id}: {e}")
@@ -108,12 +108,12 @@ async def handle_media_post(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("🚫 No permission.")
         return
 
-    caption = update.message.caption or "🎬 Latest Promo"
+    caption = update.message.caption or "🧧 Latest Promo"
 
     keyboard = [
         [
-            InlineKeyboardButton("📝 Register", url="https://www.12win.online/refer/tlgbot"),
-            InlineKeyboardButton("🎮 Play", url="https://www.12win.online")
+            InlineKeyboardButton("🕹️ Daftar", url="https://www.12win.online/refer/tlgbot"),
+            InlineKeyboardButton("💫 Spin", url="https://www.12win.online")
         ],
         [
             InlineKeyboardButton("💬 Contact", url="https://direct.lc.chat/19594218/")
@@ -150,7 +150,7 @@ def main():
     # job queue (IMPORTANT FIX)
     app.job_queue.run_daily(
         scheduled_message,
-        time=time(17, 0, tzinfo=malaysia)
+        time=time(20, 0, tzinfo=malaysia)
     )
 
     # webhook (Render only)
