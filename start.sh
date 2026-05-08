@@ -1,1 +1,2 @@
-python3 12wbot1.py\r
+#!/bin/bash
+python3 12wbot1.py
