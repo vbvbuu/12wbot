@@ -156,6 +156,23 @@ async def handle_media_post(update: Update, context: ContextTypes.DEFAULT_TYPE):
         print("SEND ERROR:", e)
         await update.message.reply_text(f"❌ Failed: {e}")
 
+async def scheduled_message(context: ContextTypes.DEFAULT_TYPE):
+    try:
+        with open("user_ids.txt", "r") as f:
+            user_ids = list(set(line.strip() for line in f if line.strip()))
+
+        for user_id in user_ids:
+            try:
+                await context.bot.send_message(
+                    chat_id=int(user_id),
+                    text="📢 Notis Harian: Top up sekarang & MENANG BESAR!"
+                )
+            except Exception as e:
+                print(f"Failed {user_id}: {e}")
+
+    except FileNotFoundError:
+        print("user_ids.txt not found")
+
 
 # ================= MAIN =================
 
