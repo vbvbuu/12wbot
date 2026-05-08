@@ -1,2 +1,2 @@
 #!/bin/bash
-python 12wbot1.py
+python3 12wbot1.py
