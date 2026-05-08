@@ -110,7 +110,6 @@ def main():
 
     job_queue = app.job_queue
     job_queue.run_daily(scheduled_message, time=time(17, 0, tzinfo=malaysia))
-    job_queue.start()
 
     if os.environ.get("RENDER"):
         webhook_url = f"{BASE_URL}{WEBHOOK_PATH}"
