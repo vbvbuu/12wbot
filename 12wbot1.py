@@ -124,6 +124,5 @@ def main():
     else:
         print("🖥️ Running in polling mode")
         app.run_polling()
-
 if __name__ == "__main__":
     main()
