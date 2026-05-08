@@ -83,24 +83,6 @@ async def welcome_new_member(update: Update, context: ContextTypes.DEFAULT_TYPE)
         )
 
 
-async def scheduled_message(context: ContextTypes.DEFAULT_TYPE):
-    try:
-        with open("user_ids.txt", "r") as f:
-            user_ids = list(set(line.strip() for line in f if line.strip()))
-
-        for user_id in user_ids:
-            try:
-                await context.bot.send_message(
-                    chat_id=int(user_id),
-                    text="🎰 Amaran Bonus Harian: Topup sekarang & MENANG BESAR!"
-                )
-            except Exception as e:
-                logging.warning(f"Failed {user_id}: {e}")
-
-    except FileNotFoundError:
-        logging.warning("user_ids.txt not found")
-
-
 async def handle_media_post(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
 
@@ -108,11 +90,11 @@ async def handle_media_post(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("🚫 No permission.")
         return
 
-    caption = update.message.caption or "🧧 Latest Promo"
+    caption = update.message.caption or "🧧 12WIN Latest Promo"
 
     keyboard = [
         [
-            InlineKeyboardButton("🕹️ Daftar", url="https://www.12win.online/refer/tlgbot"),
+            InlineKeyboardButton("🕹️ Register", url="https://www.12win.online/refer/tlgbot"),
             InlineKeyboardButton("💫 Spin", url="https://www.12win.online")
         ],
         [
@@ -122,15 +104,57 @@ async def handle_media_post(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    if update.message.photo:
-        file_id = update.message.photo[-1].file_id
-        await context.bot.send_photo(CHANNEL_ID, file_id, caption=caption, reply_markup=reply_markup)
+    msg = update.message
 
-    elif update.message.video:
-        file_id = update.message.video.file_id
-        await context.bot.send_video(CHANNEL_ID, file_id, caption=caption, reply_markup=reply_markup)
+    try:
+        # PHOTO
+        if msg.photo:
+            file_id = msg.photo[-1].file_id
+            await context.bot.send_photo(
+                chat_id=CHANNEL_ID,
+                photo=file_id,
+                caption=caption,
+                reply_markup=reply_markup
+            )
 
-    await update.message.reply_text("✅ Posted to channel!")
+        # VIDEO
+        elif msg.video:
+            file_id = msg.video.file_id
+            await context.bot.send_video(
+                chat_id=CHANNEL_ID,
+                video=file_id,
+                caption=caption,
+                reply_markup=reply_markup
+            )
+
+        # GIF / ANIMATION ⭐ 关键修复
+        elif msg.animation:
+            file_id = msg.animation.file_id
+            await context.bot.send_animation(
+                chat_id=CHANNEL_ID,
+                animation=file_id,
+                caption=caption,
+                reply_markup=reply_markup
+            )
+
+        # DOCUMENT video fallback ⭐ 很重要
+        elif msg.document:
+            file_id = msg.document.file_id
+            await context.bot.send_document(
+                chat_id=CHANNEL_ID,
+                document=file_id,
+                caption=caption,
+                reply_markup=reply_markup
+            )
+
+        else:
+            await update.message.reply_text("❗ Unsupported media type")
+
+        await update.message.reply_text("✅ Posted to channel!")
+
+    except Exception as e:
+        print("SEND ERROR:", e)
+        await update.message.reply_text(f"❌ Failed: {e}")
 
 
 # ================= MAIN =================
