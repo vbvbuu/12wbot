@@ -108,10 +108,13 @@ def main():
     app.add_handler(MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, welcome_new_member))
     app.add_handler(MessageHandler(filters.PHOTO | filters.VIDEO, handle_media_post))
 
-   app.job_queue.run_daily(
-    scheduled_message,
-    time=time(17, 0, tzinfo=malaysia))
+   def main():
+    app = Application.builder().token(TOKEN).build()
 
+    app.job_queue.run_daily(
+        scheduled_message,
+        time=time(17, 0, tzinfo=malaysia)
+    )
     if os.environ.get("RENDER"):
         webhook_url = f"{BASE_URL}{WEBHOOK_PATH}"
         print(f"🚀 Starting webhook with URL: {webhook_url} on port {PORT}")
