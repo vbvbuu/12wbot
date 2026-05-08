@@ -15,7 +15,7 @@ ADMIN_IDS = [7060111888]
 
 WEBHOOK_PATH = "/webhook"
 PORT = int(os.environ.get("PORT", 10000))
-BASE_URL = "https://telegram-bot-z8zl.onrender.com"
+BASE_URL = "https://one2wbot.onrender.com"
 
 logging.basicConfig(level=logging.INFO)
 
