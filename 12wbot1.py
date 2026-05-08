@@ -34,15 +34,15 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await context.bot.send_photo(
                 chat_id=chat_id,
                 photo=photo,
-                caption="Welcome to VictorBet💎👇"
+                caption="Selamat datang 12WIN💋🔥"
             )
     except:
-        await update.message.reply_text("Welcome to VictorBet💎👇")
+        await update.message.reply_text("Selamat datang 12WIN💋🔥")
 
     keyboard = [
-        [InlineKeyboardButton("📝 Register", url="https://www.victorbet.me/download/url?referral=3FLEBW")],
-        [InlineKeyboardButton("🎮 Play Now", url="https://www.victorbet.me")],
-        [InlineKeyboardButton("🚀 Channel", url="https://t.me/VTB33_Channel")],
+        [InlineKeyboardButton("📝 Register", url="https://www.12win.online/refer/tlgbot")],
+        [InlineKeyboardButton("🎮 Play Now", url="https://www.12win.online")],
+        [InlineKeyboardButton("🚀 Channel", url="https://t.me/onetwowiin")],
         [InlineKeyboardButton("📲 Contact us", callback_data="contact_us")]
     ]
 
@@ -58,7 +58,7 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if query.data == "contact_us":
         await query.message.reply_text(
-            "💬 Contact CS:\nhttps://direct.lc.chat/14684676/"
+            "💬 Contact CS:\nhttps://direct.lc.chat/19594218/"
         )
 
 
@@ -67,13 +67,13 @@ async def keyword_reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if "hi boss" in text or "daftar" in text:
         await update.message.reply_text(
-            "👇 Register link:\nhttps://www.victorbet.me/download/url?referral=3FLEBW\n"
-            "💬 CS: https://direct.lc.chat/14684676/"
+            "👇 Register link:\nhttps://www.12win.online/refer/tlgbot\n"
+            "💬 CS: https://direct.lc.chat/19594218/"
         )
     elif "livechat" in text:
-        await update.message.reply_text("💬 CS: https://direct.lc.chat/14684676/")
+        await update.message.reply_text("💬 CS: https://direct.lc.chat/19594218/")
     else:
-        await update.message.reply_text("👇 https://www.victorbet.me")
+        await update.message.reply_text("👇 https://www.12win.online")
 
 
 async def welcome_new_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -112,11 +112,11 @@ async def handle_media_post(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     keyboard = [
         [
-            InlineKeyboardButton("📝 Register", url="https://www.victorbet.me/download/url?referral=3FLEBW"),
-            InlineKeyboardButton("🎮 Play", url="https://www.victorbet.me")
+            InlineKeyboardButton("📝 Register", url="https://www.12win.online/refer/tlgbot"),
+            InlineKeyboardButton("🎮 Play", url="https://www.12win.online")
         ],
         [
-            InlineKeyboardButton("💬 Contact", url="https://direct.lc.chat/14684676/")
+            InlineKeyboardButton("💬 Contact", url="https://direct.lc.chat/19594218/")
         ]
     ]
 
