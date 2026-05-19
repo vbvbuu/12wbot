@@ -216,17 +216,17 @@ app.add_handler(
     )
 )
 
-    # job queue (IMPORTANT FIX)
-    app.job_queue.run_daily(
-        scheduled_message,
-        time=time(20, 0, tzinfo=malaysia)
+# job queue (IMPORTANT FIX)
+app.job_queue.run_daily(
+    scheduled_message,
+    time=time(20, 0, tzinfo=malaysia)
     )
 
-    # webhook (Render only)
-    webhook_url = f"{BASE_URL}{WEBHOOK_PATH}"
+# webhook (Render only)
+webhook_url = f"{BASE_URL}{WEBHOOK_PATH}"
     print(f"🚀 Webhook running: {webhook_url}")
 
-    app.run_webhook(
+app.run_webhook(
         listen="0.0.0.0",
         port=PORT,
         url_path=WEBHOOK_PATH,
