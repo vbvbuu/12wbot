@@ -181,6 +181,8 @@ def main():
     malaysia = timezone(timedelta(hours=8))
 
     app = ApplicationBuilder().token(TOKEN).build()
+       
+    print("BOT STARTED")
 
     # start command
     app.add_handler(CommandHandler("start", start))
@@ -188,6 +190,8 @@ def main():
     # button callback
     app.add_handler(CallbackQueryHandler(button_callback))
 
+    print("REGISTER MEDIA HANDLER")
+    
     # media handler
     app.add_handler(
         MessageHandler(
