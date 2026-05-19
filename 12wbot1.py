@@ -11,7 +11,7 @@ from datetime import time, timedelta, timezone
 # ================= CONFIG =================
 TOKEN = os.getenv("BOT_TOKEN")
 CHANNEL_ID = int(os.getenv("CHANNEL_ID"))
-ADMIN_IDS = int(os.getenv("ADMIN_ID"))
+ADMIN_IDS = [int(os.getenv("ADMIN_ID"))]
 
 WEBHOOK_PATH = "/webhook"
 PORT = int(os.environ.get("PORT", 10000))
@@ -198,7 +198,7 @@ def main():
             filters.PHOTO
             | filters.VIDEO
             | filters.ANIMATION
-            | filters.Document.VIDEO,
+            | filters.Document.ALL,
             handle_media_post
         )
     )
