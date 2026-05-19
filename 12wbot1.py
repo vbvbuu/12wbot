@@ -182,51 +182,51 @@ def main():
 
     app = ApplicationBuilder().token(TOKEN).build()
 
-    # handlers
     # start command
-app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("start", start))
 
-# button callback
-app.add_handler(CallbackQueryHandler(button_callback))
+    # button callback
+    app.add_handler(CallbackQueryHandler(button_callback))
 
-# MEDIA HANDLER ⭐ 一定放前面
-app.add_handler(
-    MessageHandler(
-        filters.PHOTO
-        | filters.VIDEO
-        | filters.ANIMATION
-        | filters.Document.VIDEO,
-        handle_media_post
-    )
-)
-
-# welcome new member
-app.add_handler(
-    MessageHandler(
-        filters.StatusUpdate.NEW_CHAT_MEMBERS,
-        welcome_new_member
-    )
-)
-
-# TEXT HANDLER ⭐ 一定放最后
-app.add_handler(
-    MessageHandler(
-        filters.TEXT & ~filters.COMMAND,
-        keyword_reply
-    )
-)
-
-# job queue (IMPORTANT FIX)
-app.job_queue.run_daily(
-    scheduled_message,
-    time=time(20, 0, tzinfo=malaysia)
+    # media handler
+    app.add_handler(
+        MessageHandler(
+            filters.PHOTO
+            | filters.VIDEO
+            | filters.ANIMATION
+            | filters.Document.VIDEO,
+            handle_media_post
+        )
     )
 
-# webhook (Render only)
-webhook_url = f"{BASE_URL}{WEBHOOK_PATH}"
+    # welcome new member
+    app.add_handler(
+        MessageHandler(
+            filters.StatusUpdate.NEW_CHAT_MEMBERS,
+            welcome_new_member
+        )
+    )
+
+    # text handler
+    app.add_handler(
+        MessageHandler(
+            filters.TEXT & ~filters.COMMAND,
+            keyword_reply
+        )
+    )
+
+    # scheduled message
+    app.job_queue.run_daily(
+        scheduled_message,
+        time=time(17, 0, tzinfo=malaysia)
+    )
+
+    # webhook
+    webhook_url = f"{BASE_URL}{WEBHOOK_PATH}"
+
     print(f"🚀 Webhook running: {webhook_url}")
 
-app.run_webhook(
+    app.run_webhook(
         listen="0.0.0.0",
         port=PORT,
         url_path=WEBHOOK_PATH,
