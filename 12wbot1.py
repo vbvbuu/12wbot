@@ -84,6 +84,7 @@ async def welcome_new_member(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
 
 async def handle_media_post(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    print("MEDIA HANDLER TRIGGERED")
     user_id = update.effective_user.id
 
     if user_id not in ADMIN_IDS:
@@ -182,11 +183,38 @@ def main():
     app = ApplicationBuilder().token(TOKEN).build()
 
     # handlers
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(CallbackQueryHandler(button_callback))
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, keyword_reply))
-    app.add_handler(MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, welcome_new_member))
-    app.add_handler(MessageHandler(filters.PHOTO | filters.VIDEO | filters.ANIMATION | filters.Document.VIDEO,handle_media_post))
+    # start command
+app.add_handler(CommandHandler("start", start))
+
+# button callback
+app.add_handler(CallbackQueryHandler(button_callback))
+
+# MEDIA HANDLER ⭐ 一定放前面
+app.add_handler(
+    MessageHandler(
+        filters.PHOTO
+        | filters.VIDEO
+        | filters.ANIMATION
+        | filters.Document.VIDEO,
+        handle_media_post
+    )
+)
+
+# welcome new member
+app.add_handler(
+    MessageHandler(
+        filters.StatusUpdate.NEW_CHAT_MEMBERS,
+        welcome_new_member
+    )
+)
+
+# TEXT HANDLER ⭐ 一定放最后
+app.add_handler(
+    MessageHandler(
+        filters.TEXT & ~filters.COMMAND,
+        keyword_reply
+    )
+)
 
     # job queue (IMPORTANT FIX)
     app.job_queue.run_daily(
