@@ -41,7 +41,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     keyboard = [
         [InlineKeyboardButton("📩 Register", url="https://www.12win.online/refer/tlgbot")],
-        [InlineKeyboardButton("🕹️ Play Now", url="https://www.12win.online")],
+        [InlineKeyboardButton("🕹️ Watch FIFA 2026 Live Stream", url="https://rtmklik.rtm.gov.my/live/sukan")],
         [InlineKeyboardButton("🛎️ Channel", url="https://t.me/onetwowiin")],
         [InlineKeyboardButton("📲 Contact us", callback_data="contact_us")]
     ]
@@ -99,6 +99,7 @@ async def handle_media_post(update: Update, context: ContextTypes.DEFAULT_TYPE):
             InlineKeyboardButton("💫 Spin", url="https://www.12win.online")
         ],
         [
+            InlineKeyboardButton("🕹️ Watch FIFA 2026 Live Stream", url="https://rtmklik.rtm.gov.my/live/sukan	"),
             InlineKeyboardButton("💬 Contact", url="https://direct.lc.chat/19594218/")
         ]
     ]
